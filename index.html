@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Family Taxi | Booking & Airport Rides</title>
+  <meta name="description" content="Reserva traslados a JFK y LaGuardia con Family Taxi. Hero tipo app + landing moderna con testimonios, contacto y WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header__inner">
+      <a href="#home" class="brand" aria-label="Family Taxi">
+        <img class="brand__logo brand__logo--dark" src="./famtaxi black1.png" alt="Family Taxi" />
+        <img class="brand__logo brand__logo--light" src="./famtaxi white1.png" alt="" aria-hidden="true" />
+      </a>
+
+      <div class="header__actions">
+        <div id="langSwitch" class="lang-switch" role="group" aria-label="Selector de idioma">
+          <button class="lang-switch__btn is-active" type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button class="lang-switch__btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Cambiar modo de color">
+          <span class="theme-toggle__sun">Day</span>
+          <span class="theme-toggle__dot"></span>
+          <span class="theme-toggle__moon">Night</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero-night">
+      <div class="container hero-night__grid">
+        <article class="hero-copy reveal-on-scroll">
+          <p class="eyebrow">Airport Booking • New York</p>
+          <h1>Always there to take you anywhere</h1>
+          <p class="hero-copy__text">
+            Traslados premium a JFK y LaGuardia desde Bronx, Manhattan, Queens, Brooklyn y Staten Island.
+            Atención real 24/7 y confirmación rápida por WhatsApp.
+          </p>
+          <div class="hero-copy__badges">
+            <span>SUV 6 pasajeros</span>
+            <span>Silla para niños</span>
+            <span>Efectivo + Zelle</span>
+          </div>
+
+          <button id="heroCtaStart" class="btn-primary hero-copy__cta js-start-booking" type="button">ORDENAR AHORA</button>
+        </article>
+
+        <article class="booking-card reveal-on-scroll">
+          <p id="bookingPromoNotice" class="booking-promo is-hidden" role="status" aria-live="polite"></p>
+
+          <div class="booking-progress" aria-label="Progreso de reserva">
+            <div class="booking-progress__bar" id="bookingProgress"></div>
+          </div>
+
+          <div class="booking-slider" id="bookingSlider">
+            <section class="booking-step is-active" data-step="1">
+              <p class="booking-card__step">Step 1</p>
+              <h2>Where to?</h2>
+
+              <label for="pickup">Pick-up location</label>
+              <input id="pickup" type="text" placeholder="Ej: Bronx, NY" />
+
+              <label for="destination">Destination</label>
+              <input id="destination" type="text" placeholder="Ej: JFK Airport" />
+
+              <div class="hero-next-row">
+                <button class="btn-primary" data-action="next" type="button">NEXT</button>
+
+                <div class="hero-social-proof" aria-label="Prueba social">
+                  <div class="hero-social-proof__avatars" aria-hidden="true">
+                    <span class="hero-social-proof__avatar hero-social-proof__avatar--1"></span>
+                    <span class="hero-social-proof__avatar hero-social-proof__avatar--2"></span>
+                    <span class="hero-social-proof__avatar hero-social-proof__avatar--3"></span>
+                  </div>
+                  <div class="hero-social-proof__copy">
+                    <p class="hero-social-proof__title">+200 viajes completados</p>
+                    <p class="hero-social-proof__subtitle">Clientes satisfechos en NYC</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="booking-step" data-step="2">
+              <p class="booking-card__step">Step 2</p>
+              <h2>Trip Details</h2>
+
+              <p class="field-caption">Tipo de viaje</p>
+              <div class="chip-row" id="tripTypeOptions">
+                <button class="chip is-selected" type="button" data-trip-type="One Way">One Way</button>
+                <button class="chip" type="button" data-trip-type="Round Trip">Round Trip</button>
+              </div>
+
+              <p class="field-caption">Pasajeros</p>
+              <div class="chip-row" id="passengerOptions">
+                <button class="chip is-selected" type="button" data-passengers="1-4">1-4</button>
+                <button class="chip" type="button" data-passengers="5-6">5-6</button>
+              </div>
+
+              <div class="step-actions">
+                <button class="btn-secondary" data-action="back" type="button">BACK</button>
+                <button class="btn-primary" data-action="next" type="button">NEXT</button>
+              </div>
+            </section>
+
+            <section class="booking-step" data-step="3">
+              <p class="booking-card__step">Step 3</p>
+              <h2>When?</h2>
+
+              <div class="chip-row" id="whenOptions">
+                <button class="chip is-selected" type="button" data-when="Book Now">Book Now</button>
+                <button class="chip" type="button" data-when="Schedule">Schedule</button>
+              </div>
+
+              <div class="schedule-fields is-hidden" id="scheduleFields">
+                <label for="tripDate">Date</label>
+                <input id="tripDate" type="date" />
+
+                <label for="tripTime">Time</label>
+                <input id="tripTime" type="time" />
+
+                <div class="return-fields is-hidden" id="returnFields">
+                  <label for="returnDate">Return Date</label>
+                  <input id="returnDate" type="date" />
+
+                  <label for="returnTime">Return Time</label>
+                  <input id="returnTime" type="time" />
+                </div>
+              </div>
+
+              <div class="step-actions">
+                <button class="btn-secondary" data-action="back" type="button">BACK</button>
+                <button class="btn-primary" data-action="next" type="button">NEXT</button>
+              </div>
+            </section>
+
+            <section class="booking-step" data-step="4">
+              <p class="booking-card__step">Step 4</p>
+              <h2>Confirm</h2>
+
+              <div class="summary-list">
+                <p><span>Origen</span><strong id="summaryPickup">-</strong></p>
+                <p><span>Destino</span><strong id="summaryDestination">-</strong></p>
+                <p><span>Pasajeros</span><strong id="summaryPassengers">-</strong></p>
+                <p><span>Tipo</span><strong id="summaryType">-</strong></p>
+                <p><span>Fecha</span><strong id="summaryDate">-</strong></p>
+                <p><span>Regreso</span><strong id="summaryReturn">-</strong></p>
+                <p><span id="summaryPromoLabel">Promo</span><strong id="summaryPromo">-</strong></p>
+              </div>
+
+              <div class="step-actions step-actions--stack">
+                <button class="btn-secondary" data-action="back" type="button">BACK</button>
+                <button id="confirmWhatsApp" class="btn-primary" type="button">Confirm &amp; Send to WhatsApp</button>
+              </div>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section how-it-works">
+      <div class="container">
+        <header class="how-header reveal-on-scroll">
+          <h2>How It Works</h2>
+          <p>Reserva en minutos con un flujo claro, rápido y pensado para aeropuerto.</p>
+        </header>
+
+        <div class="how-grid">
+          <article class="how-card how-card--route reveal-on-scroll">
+            <div class="how-media how-media--route" aria-hidden="true"></div>
+            <div class="how-content">
+              <h3>Choose Your Route</h3>
+              <p>Ingresa origen y destino para empezar tu solicitud de traslado de forma inmediata.</p>
+            </div>
+          </article>
+
+          <article class="how-card how-card--details reveal-on-scroll">
+            <div class="how-media how-media--details" aria-hidden="true"></div>
+            <div class="how-content">
+              <h3>Select Trip Details</h3>
+              <p>Define ida o viaje redondo, cantidad de pasajeros y horario de reserva.</p>
+            </div>
+          </article>
+
+          <article class="how-card how-card--confirm reveal-on-scroll">
+            <div class="how-media how-media--confirm" aria-hidden="true"></div>
+            <div class="how-content">
+              <h3>Confirm via WhatsApp</h3>
+              <p>Revisa tu resumen y confirma en WhatsApp con el mensaje prellenado listo para enviar.</p>
+              <button class="btn-primary how-cta js-start-booking" type="button">ORDENAR AHORA</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="taxi-divider" aria-hidden="true"></section>
+
+    <section id="testimonials" class="section section-day reveal-on-scroll">
+      <div class="container testimonials-layout">
+        <aside class="testimonials-visual" aria-label="Clientes satisfechos">
+          <div class="avatar avatar--1"></div>
+          <div class="avatar avatar--2"></div>
+          <div class="avatar avatar--3 avatar--main"></div>
+          <div class="avatar avatar--4"></div>
+          <div class="avatar avatar--5"></div>
+          <div class="avatar avatar--6"></div>
+          <div class="avatar avatar--7"></div>
+        </aside>
+
+        <article class="testimonials-copy">
+          <h2>People Love Us</h2>
+          <p class="testimonials-kicker">Rating &amp; Review</p>
+          <p class="testimonials-quote">
+            Reservé mi traslado al aeropuerto a las 4:30 am y el conductor llegó 10 minutos antes.
+            El auto estaba impecable y el servicio fue muy profesional.
+            Me dio mucha tranquilidad saber que no perdería mi vuelo.
+          </p>
+
+          <p class="testimonials-stars" aria-label="5 de 5 estrellas">
+            <span class="star is-filled">★</span>
+            <span class="star is-filled">★</span>
+            <span class="star is-filled">★</span>
+            <span class="star is-filled">★</span>
+            <span class="star is-filled">★</span>
+          </p>
+
+          <div class="testimonials-author">
+            <div class="author-avatar"></div>
+            <div>
+              <strong>María G.</strong>
+              <p>Frequent Traveler</p>
+            </div>
+          </div>
+
+          <button class="btn-primary testimonials-cta js-start-booking" type="button">ORDENAR AHORA</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="taxi-divider taxi-divider--light" aria-hidden="true"></section>
+
+    <section class="section section-day section-day--banner reveal-on-scroll" aria-label="Banner promocional">
+      <div class="container">
+        <button id="promoBannerOffer" class="promo-banner promo-banner--cta" type="button" aria-label="Aplicar promoción de primer viaje y reservar">
+          <picture>
+            <source media="(max-width: 540px)" srcset="./bannervertical.png" />
+            <img src="./bannerHorizontal.png" alt="Banner de Family Taxi" />
+          </picture>
+        </button>
+      </div>
+    </section>
+
+    <section id="faqs" class="section section-day reveal-on-scroll" aria-label="Preguntas frecuentes">
+      <div class="container">
+        <article class="faq-card">
+          <header class="faq-header">
+            <h2>FAQs</h2>
+            <p>Preguntas principales sobre reservas y traslados al aeropuerto.</p>
+          </header>
+
+          <div class="faq-list">
+            <details class="faq-item" open>
+              <summary>¿Con cuánto tiempo de anticipación debo reservar?</summary>
+              <p>Recomendamos reservar con al menos 2 horas de anticipación. Para madrugadas o viajes especiales, mejor con 24 horas.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>¿Hacen traslados a JFK y LaGuardia?</summary>
+              <p>Sí, realizamos viajes diarios hacia y desde JFK y LaGuardia desde los cinco boroughs de New York.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>¿Puedo pedir viaje redondo?</summary>
+              <p>Sí. Puedes seleccionar Round Trip y programar ida y regreso con fecha y hora.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>¿Qué métodos de pago aceptan?</summary>
+              <p>Aceptamos efectivo y Zelle. Si necesitas otra opción, escríbenos por WhatsApp antes de confirmar.</p>
+            </details>
+
+            <details class="faq-item">
+              <summary>¿Tienen sillas para niños?</summary>
+              <p>Sí, contamos con sillas para niños bajo solicitud previa en la reserva.</p>
+            </details>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-day section-day--soft reveal-on-scroll">
+      <div class="container">
+        <article class="contact-card">
+          <div class="contact-card__map">
+            <iframe
+              title="Mapa de New York"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-74.2591%2C40.4774%2C-73.7002%2C40.9176&amp;layer=mapnik&amp;marker=40.6413%2C-73.7781"
+            ></iframe>
+          </div>
+          <div class="contact-card__content">
+            <h2>Contact Us</h2>
+            <form id="contactForm" class="contact-form">
+              <input id="name" type="text" placeholder="Name" />
+              <input id="email" type="email" placeholder="Email" />
+              <textarea id="message" placeholder="Message"></textarea>
+              <button class="btn-primary" type="submit">Submit</button>
+            </form>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <article class="footer-brand">
+          <a href="#home" class="footer-brand__logo" aria-label="Family Taxi">
+            <img class="brand__logo brand__logo--dark" src="./famtaxi black1.png" alt="Family Taxi" />
+            <img class="brand__logo brand__logo--light" src="./famtaxi white1.png" alt="" aria-hidden="true" />
+          </a>
+          <p>Designed for airport transfers in New York.</p>
+        </article>
+
+        <nav class="footer-links" aria-label="Enlaces rápidos">
+          <h3>Enlaces</h3>
+          <a href="#home">Inicio</a>
+          <a href="#how-it-works">Cómo funciona</a>
+          <a href="#testimonials">Testimonios</a>
+          <a href="#faqs">FAQs</a>
+          <a href="#contact">Contacto</a>
+        </nav>
+
+        <article class="footer-contact" aria-label="Información de contacto">
+          <h3>Contacto</h3>
+          <a href="tel:+13475935721">+1 (347) 593-5721</a>
+          <a href="https://wa.me/13475935721" target="_blank" rel="noreferrer">WhatsApp</a>
+          <p>New York City: Bronx, Manhattan, Queens, Brooklyn y Staten Island.</p>
+        </article>
+
+        <article class="footer-links" aria-label="Legal y redes">
+          <h3>Legal &amp; Redes</h3>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+        </article>
+      </div>
+
+      <div class="footer__bottom">
+        <p>©2026 Family Taxi. All rights reserved.</p>
+        <p>Designed for airport transfers in New York.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/13475935721" target="_blank" rel="noreferrer" aria-label="Abrir WhatsApp">
+    WhatsApp
+  </a>
+
+  <script src="./script.js"></script>
+</body>
+</html>
