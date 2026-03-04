@@ -119,17 +119,21 @@ function setupAutocomplete(input) {
 }
 
 window.initPlacesAutocomplete = function() {
-  if (pickupInput) setupAutocomplete(pickupInput);
-  if (destinationInput) setupAutocomplete(destinationInput);
-  // Cerrar al click afuera
-  document.addEventListener("mousedown", (e) => {
-    if (!e.target.closest(".pac-container") && e.target !== pickupInput && e.target !== destinationInput) {
-      document.querySelectorAll(".pac-container").forEach(el => {
-        el.style.display = "none";
-        console.log("Ocultando .pac-container por click afuera");
-      });
-    }
-  });
+  if (typeof setupAutocomplete === 'function') {
+    if (pickupInput) setupAutocomplete(pickupInput);
+    if (destinationInput) setupAutocomplete(destinationInput);
+    // Cerrar al click afuera
+    document.addEventListener("mousedown", (e) => {
+      if (!e.target.closest(".pac-container") && e.target !== pickupInput && e.target !== destinationInput) {
+        document.querySelectorAll(".pac-container").forEach(el => {
+          el.style.display = "none";
+          console.log("Ocultando .pac-container por click afuera");
+        });
+      }
+    });
+  } else {
+    console.error('setupAutocomplete no está definida');
+  }
 }
 // --- Fin Google Places Autocomplete Fix ---
 const contactForm = document.getElementById('contactForm');
