@@ -1,6 +1,44 @@
 <!doctype html>
 <html lang="es">
 <head>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+      import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app-check.js";
+
+      // Tu configuración de Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyDccEBb8NV-QX36TNy-Ouagy8hkUpl3cUM",
+        authDomain: "familytaxinyc.firebaseapp.com",
+        projectId: "familytaxinyc",
+        storageBucket: "familytaxinyc.firebasestorage.app",
+        messagingSenderId: "369565355153",
+        appId: "1:369565355153:web:2b78369e5be36d4f9c8330",
+        measurementId: "G-YW1WBNL5L1"
+      };
+
+      // Inicializa Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      // Inicializa App Check con tu site key real
+      const appCheck = initializeAppCheck(app, {
+        provider: new ReCaptchaV3Provider('6LcMzX8sAAAAAO9ZcFCd68BBL3xV_f0uWyOZkD4M'),
+        isTokenAutoRefreshEnabled: true
+      });
+
+      // Carga Google Maps JS API solo después de que App Check esté listo
+      window.initAppCheckAndMaps = function() {
+        const script = document.createElement('script');
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ZZDA0KffVr3n7XV0uLA9-p6r_qMfkFc&libraries=places&callback=initPlacesAutocomplete";
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      };
+
+      // Llama a la función para cargar Google Maps después de que App Check esté listo
+      window.initAppCheckAndMaps();
+    </script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Family Taxi | Booking & Airport Rides</title>
@@ -376,7 +414,6 @@
   </a>
 
  <script src="script.js?v=1.0.1"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8ZZDA0KffVr3n7XV0uLA9-p6r_qMfkFc&libraries=places&callback=initPlacesAutocomplete" async defer></script>
       
  
 </body>
