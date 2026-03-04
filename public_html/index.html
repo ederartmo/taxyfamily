@@ -68,7 +68,7 @@
               <label for="origen">Pick-up location</label>
               <div style="display:flex;gap:8px;align-items:center;">
                 <div style="position:relative;flex:1;">
-                  <input id="origen" type="text" placeholder="Ej: Bronx, NY" style="width:100%;padding-right:38px;" />
+                  <input id="origen" type="text" placeholder="Ej: Bronx, NY" style="width:100%;padding-right:38px;" autocomplete="off" />
                   <button id="useMyLocation" type="button" title="Usar mi ubicación" aria-label="Usar mi ubicación" style="position:absolute;top:50%;right:6px;transform:translateY(-50%);background:transparent;border:none;padding:0;cursor:pointer;height:24px;width:24px;display:flex;align-items:center;justify-content:center;">
                     <img src="./ubi.png" alt="Ubicación actual" style="width:22px;height:22px;display:block;" />
                   </button>
@@ -76,7 +76,7 @@
               </div>
 
               <label for="destination">Destination</label>
-              <input id="destination" type="text" placeholder="Ej: JFK Airport" />
+              <input id="destination" type="text" placeholder="Ej: JFK Airport" autocomplete="off" />
 
               <div class="hero-next-row">
                 <button class="btn-primary" data-action="next" type="button">NEXT</button>
