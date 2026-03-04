@@ -65,7 +65,12 @@
               <h2>Where to?</h2>
 
               <label for="origen">Pick-up location</label>
-              <input id="origen" type="text" placeholder="Ej: Bronx, NY" />
+              <div style="display:flex;gap:8px;align-items:center;">
+                <input id="origen" type="text" placeholder="Ej: Bronx, NY" style="flex:1;" />
+                <button id="useMyLocation" type="button" title="Usar mi ubicación" aria-label="Usar mi ubicación" style="padding:6px 10px;cursor:pointer;">
+                  📍
+                </button>
+              </div>
 
               <label for="destination">Destination</label>
               <input id="destination" type="text" placeholder="Ej: JFK Airport" />

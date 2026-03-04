@@ -24,6 +24,49 @@ const pickupInput = document.getElementById('origen') || document.getElementById
 const destinationInput = document.getElementById('destination');
 
 // --- Google Places Autocomplete Fix ---
+// --- Reverse geocoding para autocompletar dirección con ubicación actual ---
+function reverseGeocodeAndFillPickup(lat, lng) {
+  if (!window.google || !window.google.maps) {
+    alert('Google Maps no está cargado.');
+    return;
+  }
+  const geocoder = new google.maps.Geocoder();
+  const latlng = { lat: parseFloat(lat), lng: parseFloat(lng) };
+  geocoder.geocode({ location: latlng }, (results, status) => {
+    if (status === "OK" && results[0]) {
+      if (pickupInput) {
+        pickupInput.value = results[0].formatted_address;
+        // Opcional: dispara el evento de cambio si tu lógica lo requiere
+        pickupInput.dispatchEvent(new Event('change'));
+      }
+    } else {
+      alert("No se pudo obtener la dirección a partir de tu ubicación.");
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('useMyLocation');
+  if (btn) {
+    btn.addEventListener('click', function() {
+      if (navigator.geolocation) {
+        btn.disabled = true;
+        btn.textContent = '...';
+        navigator.geolocation.getCurrentPosition(function(position) {
+          reverseGeocodeAndFillPickup(position.coords.latitude, position.coords.longitude);
+          btn.textContent = '📍';
+          btn.disabled = false;
+        }, function() {
+          alert("No se pudo obtener tu ubicación.");
+          btn.textContent = '📍';
+          btn.disabled = false;
+        });
+      } else {
+        alert("Tu navegador no soporta geolocalización.");
+      }
+    });
+  }
+});
 if (window.google && window.google.maps && window.google.maps.places && pickupInput && destinationInput) {
   function setupAutocomplete(input) {
     const ac = new google.maps.places.Autocomplete(input, {
