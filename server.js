@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY || 'AIzaSyA8ZZDA0KffVr3n7XV0uLA9-p6r_qMfkFc';
 
 // Servir archivos estáticos desde /public
-app.use(express.static('public'));
+app.use(express.static('public_html'));
 
 // Permitir CORS solo desde tu dominio principal
 app.use(cors({
